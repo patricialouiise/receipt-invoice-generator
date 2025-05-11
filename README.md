@@ -1,38 +1,31 @@
-# Node + Express + EJS + Tailwind CSS Starter Template
+# 🌍 Wanderbill
 
-The intention of this project is how to create app using Node.js + Express.js + EJS + Tailwind css
+Wanderbill is a fun web app that generates aesthetic, receipt-style summaries of your travel activities. Inspired by [Receiptify](https://github.com/michellexliu/receiptify), it allows users to log destinations and activities, then creates stylish "travel receipts" to share or keep as mementos.
 
-## Dependencies
+## ✈️ Features
 
-- [Node.js](https://nodejs.org/)
-- [Express.js](https://expressjs.com/)
-- [EJS](https://ejs.co/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- Add and manage travel activities (activity name, and cost).
+- Automatically generates a receipt-style summary.
+- Download or share your travel receipt image.
+- Clean, minimal UI for an easy and fun user experience.
 
-# Requirements
+## 🧭 Demo
 
-You need to have installed [Node.js](https://nodejs.org/es/download/).
+👉 [Try Wanderbill now](https://wanderbill.netlify.app/)
 
-# Set up
+## 🖼️ Screenshots
+![{3D1D8AD6-A1B1-427E-96F2-10E725AC1FF4}](https://github.com/user-attachments/assets/045325aa-ca1e-44a3-a534-7c5cb98165fd)
 
-Clone the repo or download it.
+## 🚀 Getting Started
 
-Go to the project folder and run
+### Prerequisites
 
-```sh
-$ npm install
-```
+- Node.js and npm installed
 
-And run your server running the following command in the root of the project:
+### Installation
 
-```sh
-$ npm run dev
-```
-
-Start the Tailwind CLI build process
-
-Run the CLI tool to scan your template files for classes and build your CSS.:
-
-```sh
-$ npm run devcss
-```
+```bash
+git clone https://github.com/yourusername/wanderbill.git
+cd wanderbill
+npm install
+npm run dev
