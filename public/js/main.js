@@ -51,9 +51,14 @@ const onBtnAddActivityClick = (event) => {
     let activity = txtActivity.value.trim().toUpperCase();
     let activityAmount = parseFloat(txtActivityAmount.value.trim());
 
-    if (activity === "" || activityAmount <= 0) {
-        alert("Please enter a valid activity and amount.");
+    if (activity === "") {
+        alert("Please enter an activity.");
         return;
+    }
+
+    // Allows $0 inputs 
+    if (isNaN(activityAmount) || activityAmount <= 0) {
+        activityAmount = 0; // Set to 0 for default amount
     }
 
     createActivity(activity, activityAmount);
