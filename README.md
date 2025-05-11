@@ -25,7 +25,7 @@ Wanderbill is a fun web app that generates aesthetic, receipt-style summaries of
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/wanderbill.git
+git clone https://github.com/lexradotdev/wanderbill.git
 cd wanderbill
 npm install
 npm run dev
