@@ -1,0 +1,28 @@
+{
+  "name": "wanderbill",
+  "version": "1.0.0",
+  "description": "The intention of this project is how to create app using Node.js + Express.js + EJS + Tailwind css",
+  "main": "index.js",
+  "scripts": {
+    "devcss": "postcss public/styles/tailwind.css -o public/styles/style.css -w",
+    "dev": " nodemon --watch index.js"
+  },
+  "keywords": [],
+  "author": "lexradotdev",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.7",
+    "ejs": "^3.1.8",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.10",
+    "postcss": "^8.4.14",
+    "serverless-http": "^3.2.0",
+    "tailwindcss": "^3.1.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "eslint": "^9.26.0",
+    "globals": "^16.1.0",
+    "postcss-cli": "^10.0.0"
+  }
+}

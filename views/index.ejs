@@ -1,0 +1,166 @@
+<%-include("./partials/header")-%>
+
+    <body class="flex flex-col items-center justify-start min-h-screen gap-5">
+        <header class="w-full md:w-5/6 mt-3">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-primary">wanderbill</h1>
+                <p class="text-sm">Your Journey, Itemized</p>
+            </div>
+        </header>
+        <main class="w-full flex flex-col p-10 border rounded-md shadow-lg border-gray-300 md:flex-row lg:w-5/6 xl:w-4/6 2xl:w-3/6 gap-5">
+            <!-- Forms Section -->
+            <div class="form relative flex-grow">
+                <div class="form-wrapper flex flex-col gap-2">
+                    <h1 class="text-2xl font-bold">Customized Receipt</h1>
+                    <!-- General Information -->
+                    <label for="txtOrderFor">
+                        <span class="text-sm font-medium"> Order For </span>
+
+                        <input type="text" id="txtOrderFor" placeholder="John Doe" data-target="#lblOrderFor"
+                            data-target2="#lblCardHolder" oninput="onFormInput(event)"
+                            class="form-info mt-0.5 w-full rounded border p-2 border-gray-300 shadow-sm uppercase sm:text-sm" />
+                    </label>
+                    <label for="txtDestination">
+                        <span class="text-sm font-medium"> Destination </span>
+
+                        <input type="text" id="txtDestination" placeholder="Tokyo, Japan" data-target="#lblDestination"
+                            oninput="onFormInput(event)"
+                            class="form-info mt-0.5 w-full rounded border p-2 border-gray-300 shadow-sm uppercase sm:text-sm" />
+                    </label>
+                    <label for="txtDeparture">
+                        <span class="text-sm font-medium"> Departure </span>
+
+                        <input type="date" id="txtDeparture" data-target="#lblDepartureDate"
+                            oninput="onFormInput(event)"
+                            class="form-info mt-0.5 w-full rounded border p-2 border-gray-300 shadow-sm sm:text-sm" />
+                    </label>
+                    <label for="txtReturn">
+                        <span class="text-sm font-medium"> Return </span>
+
+                        <input type="date" id="txtReturn" data-target="#lblReturnDate" oninput="onFormInput(event)"
+                            class="form-info mt-0.5 w-full rounded border p-2 border-gray-300 shadow-sm sm:text-sm" />
+                    </label>
+
+                    <!-- Activities -->
+                    <div>
+                        <span class="text-sm font-medium">Activities</span>
+
+                        <!-- Add Activities -->
+                        <div class="flex items-center gap-2 mt-2">
+                            <input id="txtActivity" type="text" class="flex-grow border border-gray-300 rounded px-3 py-2 uppercase"
+                                placeholder="Enter activity">
+                            <input id="txtActivityAmount" type="number"
+                                class="w-20 border border-gray-300 rounded px-2 py-2 text-center" placeholder="$0">
+                            <button id="btnAddActivity" onclick="onBtnAddActivityClick(event)"
+                                class="p-2 bg-primary text-white rounded hover:bg-primary-dark transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Activity List -->
+                        <div id="lActivities" class="max-h-[200px] overflow-y-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Receipt Section-->
+            <div class="relative">
+                <!-- Download Icon -->
+                <div class="absolute right-[-15px] top-[-15px] hidden md:block">
+                    <button class="p-2 bg-primary text-white rounded hover:bg-primary-dark transition"
+                        onclick="onBtnDownloadReceiptClick()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Receipt -->
+                <div class="flex flex-row md:block gap-2">
+                    <div
+                        class="receipt text-gray-700 flex min-h-[400px] w-[350px] bg-[url('/images/receiptBg2.jpg')] flex-col gap-2 bg-cover bg-center p-5 font-receipt shadow-xl">
+                        <div class="text-center">
+                            <h1 class="text-3xl font-bold font-receiptTitle text-gray-700">wanderbill</h1>
+                        </div>
+                        <div class="flex flex-col text-sm">
+                            <div class="pb-2 border-b-2 border-dotted border-gray-700">
+                                <p>Order <span id="lblOrderNo"></span> FOR <span id="lblOrderFor"
+                                        class="uppercase"></span></p>
+                                <p id="lblOrderDate" class="uppercase">THURSDAY, MAY 8, 2025</p>
+                            </div>
+                            <div class="py-2">
+                                <p>Destination: <span id="lblDestination" class="uppercase"></span></p>
+                                <p>Departure: <span id="lblDepartureDate"></span></p>
+                                <p>Return: <span id="lblReturnDate"></span></p>
+                            </div>
+                            <!-- Activities -->
+                            <div class="w-full  border-dotted border-b-2 border-gray-700">
+                                <div class="flex justify-between border-y-2 border-gray-700 border-dotted">
+                                    <div class="font-bold">ITEM</div>
+                                    <div class="font-bold">AMT</div>
+                                </div>
+                                <div id="lReceiptActivities" class="py-2">
+                                </div>
+                            </div>
+                            <div class="border-b-2 border-dotted border-gray-700">
+                                <div class="flex justify-between">
+                                    <p>TOTAL NUMBER OF ITEMS:</p>
+                                    <span id="lblItemCount"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p>TOTAL:</p>
+                                    <span id="lblReceiptTotal"></span>
+                                </div>
+                            </div>
+                            <div class="py-2">
+                                <p>CARD #: *******0823</p>
+                                <p>AUTHCODE: 231234231</p>
+                                <p>CARDHOLDER: <span id="lblCardHolder" class="uppercase"></span></p>
+                                <div class="flex flex-col items-center mt-2">
+                                    <img src="/images/barcode.png" class="h-[50px] w-4/6" alt="">
+                                    <p class="text-center">Thank you for using wanderbill!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Download Icon -->
+                    <div>
+                        <div class="md:hidden">
+                            <button class="p-2 bg-primary text-white rounded hover:bg-primary-dark transition"
+                                onclick="onBtnDownloadReceiptClick()">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="flex flex-row justify-center items-center gap-2">
+                <span>Made by</span>
+                <a href="https://github.com/lexradotdev/wanderbill" target="_blank"
+                    class="text-primary hover:underline flex items-center justify-center gap-1">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    @lexradotdev
+                </a>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.min.js"></script>
+        <script src="/js/main.js"></script>
+    </body>
+
+    </html>
