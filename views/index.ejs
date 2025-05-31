@@ -3,8 +3,8 @@
     <body class="flex flex-col items-center justify-start min-h-screen gap-5">
         <header class="w-full md:w-5/6 mt-3">
             <div class="text-center">
-                <h1 class="text-3xl font-bold text-primary">wanderbill</h1>
-                <p class="text-sm">Your Journey, Itemized</p>
+                <h1 class="text-3xl font-bold text-primary">dailybill</h1>
+                <p class="text-sm">Your Daily Expenses, Itemized</p>
             </div>
         </header>
         <main class="w-full flex flex-col p-4 sm:p-10 border rounded-md shadow-lg border-gray-300 md:flex-row lg:w-5/6 xl:w-4/6 2xl:w-3/6 gap-5">
@@ -14,55 +14,55 @@
                     <h1 class="text-2xl font-bold">Customize Receipt</h1>
                     <!-- General Information -->
                     <label for="txtOrderFor">
-                        <span class="text-sm font-medium"> Order For </span>
+                        <span class="text-sm font-medium"> Name </span>
 
                         <input type="text" id="txtOrderFor" placeholder="John Doe" data-target="#lblOrderFor"
                             data-target2="#lblCardHolder" oninput="onFormInput(event)"
                             class="form-info mt-0.5 w-full rounded border p-2 border-gray-300 shadow-sm uppercase sm:text-sm" />
                     </label>
                     <label for="txtDestination">
-                        <span class="text-sm font-medium"> Destination </span>
+                        <span class="text-sm font-medium"> Business </span>
 
-                        <input type="text" id="txtDestination" placeholder="Tokyo, Japan" data-target="#lblDestination"
+                        <input type="text" id="txtDestination" placeholder="Pet Express" data-target="#lblDestination"
                             oninput="onFormInput(event)"
                             class="form-info mt-0.5 w-full rounded border p-2 border-gray-300 shadow-sm uppercase sm:text-sm" />
                     </label>
                     <label for="txtDeparture">
-                        <span class="text-sm font-medium"> Departure </span>
+                        <span class="text-sm font-medium"> Date </span>
 
                         <input type="date" id="txtDeparture" data-target="#lblDepartureDate"
                             oninput="onFormInput(event)"
                             class="form-info mt-0.5 w-full rounded border p-2 border-gray-300 shadow-sm sm:text-sm" />
                     </label>
-                    <label for="txtReturn">
+                    <!-- <label for="txtReturn">
                         <span class="text-sm font-medium"> Return </span>
 
                         <input type="date" id="txtReturn" data-target="#lblReturnDate" oninput="onFormInput(event)"
                             class="form-info mt-0.5 w-full rounded border p-2 border-gray-300 shadow-sm sm:text-sm" />
-                    </label>
+                    </label> -->
 
-                    <!-- Activities -->
+                    <!-- Expenses -->
                     <div>
-                        <span class="text-sm font-medium">Activities</span>
+                        <span class="text-sm font-medium">Expenses</span>
 
-                        <!-- Add Activities -->
+                        <!-- Add Expenses -->
                         <div class="flex flex-col items-start gap-2 mt-2 sm:flex-row sm:items-center">
-                            <input id="txtActivity" type="text" class=" w-full flex-grow border border-gray-300 p-2 rounded uppercase"
-                                placeholder="Enter activity">
-                            <input id="txtActivityAmount" type="number"
+                            <input id="txtExpense" type="text" class=" w-full flex-grow border border-gray-300 p-2 rounded uppercase"
+                                placeholder="Enter expense">
+                            <input id="txtExpenseAmount" type="number"
                                 class="w-full p-2 sm:w-20 border border-gray-300 rounded" placeholder="$0">
-                            <button id="btnAddActivity" onclick="onBtnAddActivityClick(event)"
+                            <button id="btnAddExpense" onclick="onBtnAddExpenseClick(event)"
                                 class="w-full p-2 bg-primary text-white rounded sm:w-[40px] hover:bg-primary-dark transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="hidden sm:block w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
-                                <p class="sm:hidden">Add Activity</p>
+                                <p class="sm:hidden">Add Expense</p>
                             </button>
                         </div>
 
-                        <!-- Activity List -->
-                        <div id="lActivities" class="max-h-[200px] overflow-y-auto">
+                        <!-- Expense List -->
+                        <div id="lExpenses" class="max-h-[200px] overflow-y-auto">
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                     <div
                         class="receipt text-gray-700 flex min-h-[400px] w-[350px] bg-[url('/images/receiptBg2.jpg')] flex-col gap-2 bg-cover bg-center p-5 font-receipt shadow-xl">
                         <div class="text-center">
-                            <h1 class="text-3xl font-bold font-receiptTitle text-gray-700">wanderbill</h1>
+                            <h1 class="text-3xl font-bold font-receiptTitle text-gray-700">dailybill</h1>
                         </div>
                         <div class="flex flex-col text-sm">
                             <div class="pb-2 border-b-2 border-dotted border-gray-700">
@@ -96,17 +96,17 @@
                                 <p id="lblOrderDate" class="uppercase">THURSDAY, MAY 8, 2025</p>
                             </div>
                             <div class="py-2">
-                                <p>Destination: <span id="lblDestination" class="uppercase"></span></p>
-                                <p>Departure: <span id="lblDepartureDate"></span></p>
-                                <p>Return: <span id="lblReturnDate"></span></p>
+                                <p>Business: <span id="lblDestination" class="uppercase"></span></p>
+                                <p>Date: <span id="lblDepartureDate"></span></p>
+                                <!-- <p>Return: <span id="lblReturnDate"></span></p> -->
                             </div>
-                            <!-- Activities -->
+                            <!-- Expenses -->
                             <div class="w-full  border-dotted border-b-2 border-gray-700">
                                 <div class="flex justify-between border-y-2 border-gray-700 border-dotted">
                                     <div class="font-bold">ITEM</div>
                                     <div class="font-bold">AMT</div>
                                 </div>
-                                <div id="lReceiptActivities" class="py-2">
+                                <div id="lReceiptExpenses" class="py-2">
                                 </div>
                             </div>
                             <div class="border-b-2 border-dotted border-gray-700">
@@ -125,7 +125,7 @@
                                 <p>CARDHOLDER: <span id="lblCardHolder" class="uppercase"></span></p>
                                 <div class="flex flex-col items-center mt-2">
                                     <img src="/images/barcode.png" class="h-[50px] w-4/6" alt="">
-                                    <p class="text-center">Thank you for using wanderbill!</p>
+                                    <p class="text-center">Thank you for using dailybill!</p>
                                 </div>
                             </div>
                         </div>
